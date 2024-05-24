@@ -13,4 +13,13 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Framework\Demos.Framework.Core\Demos.Framework.Core.csproj" />
+      <ProjectReference Include="..\Demos.Database\Demos.Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include=".rest\Demos.Database.App.http" />
+    </ItemGroup>
+
 </Project>
