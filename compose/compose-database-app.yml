@@ -1,0 +1,43 @@
+version: '3.8'
+name: demos-database-app-docker-stack
+
+networks:
+  demos-database-app-docker-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+
+services:
+  app:
+    image: demos-database-app
+    container_name: demos-database-app
+    pull_policy: 
+      build
+    build:
+      context: ../
+      dockerfile: src/Database/Demos.Database.App.Docker/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseSettings:Books:ConnectionString: "Host=postgres;Port=5432;Database=books;Username=postgres;Password=postgrespw;"
+      DatabaseSettings:Events:ConnectionString: "Host=postgres;Port=5432;Database=events;Username=postgres;Password=postgrespw;"
+    ports:
+      - "8080:8080"
+    networks:
+      - demos-database-app-docker-network
+    depends_on:
+      - postgres
+  
+  postgres:
+    image: postgres:latest
+    container_name: demos-database-app-docker-stack.postgres
+    networks:
+      - demos-database-app-docker-network
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+    restart: unless-stopped

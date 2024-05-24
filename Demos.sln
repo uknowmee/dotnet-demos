@@ -38,6 +38,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.Framework.Core", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.Database", "src\Database\Demos.Database\Demos.Database.csproj", "{9C654B23-6453-4BF1-8343-568D7D81E365}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "compose", "compose", "{B509B062-5F35-4A22-A735-DB1C17893A84}"
+	ProjectSection(SolutionItems) = preProject
+		compose\compose-database-app.yml = compose\compose-database-app.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
