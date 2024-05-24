@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution.Items", "Solution.
 		Demos.sln = Demos.sln
 		README.md = README.md
 		.gitignore = .gitignore
+		global.json = global.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{142A2E19-8CE2-42D9-834C-4E9E92777AEF}"
