@@ -8,6 +8,11 @@ public class WeatherService : IWeatherService
     [
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     ];
+    
+    private readonly string[] _extendedSummaries =
+    [
+        "Freezing cold", "Bracing wind", "Chilly breeze", "Cool air", "Mild weather", "Warm sun", "Balmy day", "Hot summer", "Sweltering heat", "Scorching sun"
+    ];
 
     public WeatherService(ILoggerFactory loggerFactory)
     {
@@ -16,6 +21,8 @@ public class WeatherService : IWeatherService
 
     public Task<WeatherForecast[]> GetForecastAsync()
     {
+        var summaries = _summaries.Concat(_extendedSummaries).Distinct().ToArray();
+        
         var forecast = Enumerable.Range(1, 5)
             .Select(index => new WeatherForecast
                 (
