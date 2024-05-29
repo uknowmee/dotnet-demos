@@ -3,25 +3,24 @@
 public class WeatherService : IWeatherService
 {
     private readonly ILogger<WeatherService> _logger;
-
-    private readonly string[] _summaries =
-    [
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    ];
-
-    public WeatherService(ILoggerFactory loggerFactory)
+    private readonly ISummariesService _summariesService;
+    
+    public WeatherService(ILoggerFactory loggerFactory, ISummariesService summariesService)
     {
         _logger = loggerFactory.CreateLogger<WeatherService>();
+        _summariesService = summariesService;
     }
 
     public Task<WeatherForecast[]> GetForecastAsync()
     {
+        var summaries = _summariesService.Summaries();
+        
         var forecast = Enumerable.Range(1, 5)
             .Select(index => new WeatherForecast
                 (
                     DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                     Random.Shared.Next(-20, 55),
-                    _summaries[Random.Shared.Next(_summaries.Length)]
+                    summaries[Random.Shared.Next(summaries.Length)]
                 )
             ).ToArray();
 
